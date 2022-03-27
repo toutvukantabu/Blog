@@ -34,10 +34,10 @@ RUN apt-get update && \
     a2enmod rewrite headers && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     useradd -ms /bin/bash the_user -g www-data && \
-    chown the_user:www-data -R /var/www/html 
+    chown the_user:www-data -R /var/www
     
 USER the_user
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 
 
