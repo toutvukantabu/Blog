@@ -150,7 +150,7 @@ stripe: ## install stripe
 commands: ## Display all commands in the project namespace
 	$(DOCKER) exec -i $(PROJECT) $(PHP)  list $(PROJECT)
 
-build : docker-build up install jwt-create-folder jwt-private-key jwt-public-key load-fixtures   ## Build project, Install vendors according to the current composer.lock file load fixtures
+build : docker-build up install   ## Build project, Install vendors according to the current composer.lock file load fixtures
 
 reload: restart load-fixtures  ## Load fixtures 
 

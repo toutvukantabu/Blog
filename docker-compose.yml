@@ -42,9 +42,9 @@ services:
     build: .docker
     container_name: www_blog
     ports:
-      - "8741:80"
+      - "8001:80"
     volumes:
-      - .docker/php/vhosts:/etc/apache2/sites-enabled
+      - .docker/vhosts:/etc/apache2/sites-enabled
       - ./:/var/www
     restart: always
     depends_on:
