@@ -48,6 +48,9 @@ install: ## Install vendors according to the current composer.lock file
 update:## update composer
 	$(DOCKER) exec  $(PROJECT) composer update --dev --no-interaction -o
 
+autoload: ##regenerate autoloader
+	$(DOCKER) exec  $(PROJECT) composer dump-autoload
+
 ## —— Symfony environnement🎵 ———————————————————————————————————————————————————————————————
 
 sf: ## List all Symfony commands
@@ -193,7 +196,7 @@ test-all: phpunit.xml ## Run all tests
 	$(PHPUNIT) --stop-on-failure
 
 phpunit: ## Run PHP unit test
-	@$(DOCKER) exec -i $(PROJECT) $(PHPUNIT)
+	 $(PHPUNIT)
 
 phpstan: ## Run PHP STAN test
 	@$(DOCKER) exec -i $(PROJECT) $(PHPSTAN)
