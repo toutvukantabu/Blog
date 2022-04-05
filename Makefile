@@ -87,13 +87,13 @@ crud : ## make crud (create reset delete)(before using this command, connect on 
 	$(DOCKER) exec -i $(PROJECT) $(PHP) make:crud 
 
 controller : ## make controller (before using this command, connect on your container with make:bash)
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) make:controller 
+	$(DOCKER) exec -i $(PROJECT) $(PHP) make:controller 
 
 router : ## debugging App routing
 	$(DOCKER) exec -i $(PROJECT) $(PHP) debug:router
 
 dispatcher : ## see dispatcher event
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) debug:event-dispatcher
+	$(DOCKER) exec -i $(PROJECT) $(PHP) debug:event-dispatcher
 	
 framework : ## see framework config
 	$(DOCKER) exec -i $(PROJECT) $(PHP) debug:config framework 
@@ -161,12 +161,12 @@ stop: jwt-delete-folder down  ## Stop docker and the Symfony binary server
 
 
 load-fixtures: ## Build the DB, control the schema validity, load fixtures and check the migration status
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:cache:clear-metadata
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:database:create --if-not-exists
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:schema:drop --force
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:schema:create
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:schema:validate
-	 $(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev hautelook:fixtures:load --no-interaction 
+	$(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:cache:clear-metadata
+	$(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:database:create --if-not-exists
+	$(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:schema:drop --force
+	$(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:schema:create
+	$(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev doctrine:schema:validate
+	$(DOCKER) exec -i $(PROJECT) $(PHP) --env=dev hautelook:fixtures:load --no-interaction 
 
 rebuild-database: drop-db create-db migration migrate-force load-fixtures ## Drop database, create database, Doctrine migration migrate,reload fixtures
 
@@ -196,7 +196,7 @@ test-all: phpunit.xml ## Run all tests
 	$(PHPUNIT) --stop-on-failure
 
 phpunit: ## Run PHP unit test
-	 $(PHPUNIT)
+	$(PHPUNIT)
 
 phpstan: ## Run PHP STAN test
 	@$(DOCKER) exec -i $(PROJECT) $(PHPSTAN)
