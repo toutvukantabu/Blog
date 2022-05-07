@@ -2,10 +2,11 @@
 # Parameters
 SHELL         = bash
 PROJECT       = www_blog
+BDD           = mysql
 PROJECT_DB    = blog_bdd
 GIT_AUTHOR    = Bescont_Gwendal
 HTTP_PORT     = 3001
-
+MYSQL_PORT    = 3307
 
 # Executables
 EXEC_PHP      = php
@@ -186,23 +187,17 @@ app-db: ## MYSQL CLI access
 	$(DOCKER) exec -it $(PROJECT_DB) sh -c "mysql -u root -ppassword scm"
 
 ## —— Tests ✅ —————————————————————————————————————————————————————————————————
-test: phpunit.xml check ## Run main functional and unit tests
-	@$(eval testsuite ?= 'main') # or "external"
-	@$(eval filter ?= '.')
-	@$(PHPUNIT) --testsuite=$(testsuite) --filter=$(filter) --stop-on-failure
 
 
-test-all: phpunit.xml ## Run all tests
-	$(PHPUNIT) --stop-on-failure
+test-all: phpcs phpunit
 
 phpunit: ## Run PHP unit test
 	$(PHPUNIT)
 
 phpstan: ## Run PHP STAN test
-	@$(DOCKER) exec -i $(PROJECT) $(PHPSTAN)
+	$(PHPSTAN)
 
 phpcs: ## Run PHP CS test
-	@$(DOCKER) exec -i $(PROJECT) $(PHP_CS) src/ scm/ infrastructure/
-
+	@$(PHPCS)
 phpmd:
 	@$(DOCKER) exec -i $(PROJECT) ./vendor/bin/phpmd src/,scm/,infrastructure/ ansi ./phpmd.xml --exclude src/Kernel.php
