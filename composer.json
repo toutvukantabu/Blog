@@ -2,7 +2,7 @@
     "name": "bescont/blog",
     "autoload": {
         "psr-4": {
-            "Blog\\": "src/Blog"
+            "Framework\\": "src/Framework"
         }
     },
     "authors": [
@@ -16,6 +16,7 @@
     },
     "require": {
         "guzzlehttp/psr7": "^2.2",
-        "http-interop/response-sender": "^1.0"
+        "http-interop/response-sender": "^1.0",
+        "squizlabs/php_codesniffer": "^3.6"
     }
 }
