@@ -15,7 +15,7 @@ class appTest extends TestCase
         $app = new App();
         $request = new ServerRequest('GET','/demoslash/');
         $response = $app->run($request);
-        $this->assertEquals('/demoslash', $response->getHeader('Location'));
+        $this->assertContains('/demoslash', $response->getHeader('Location'));
         $this->assertEquals(301, $response->getStatusCode());
     }
 
