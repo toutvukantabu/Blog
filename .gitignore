@@ -1,3 +1,5 @@
 /vendor/
 .vscode
 .vscode/launch.json
+.idea
+composer.lock
