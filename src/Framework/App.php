@@ -9,6 +9,12 @@ use Psr\Http\Message\ServerRequestInterface;
 class App
 {
 
+    /**
+     * Renvois la requete en fonction de l' url donnée
+     *
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
         $uri = $request->getUri()->getPath();
@@ -22,6 +28,4 @@ class App
         }
         return new Response(404, [], '<h1>Erreur 404</h1>');
     }
-    
 }
-

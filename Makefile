@@ -2,10 +2,11 @@
 # Parameters
 SHELL         = bash
 PROJECT       = www_blog
+BDD           = mysql
 PROJECT_DB    = blog_bdd
 GIT_AUTHOR    = Bescont_Gwendal
 HTTP_PORT     = 3001
-
+MYSQL_PORT    = 3307
 
 # Executables
 EXEC_PHP      = php
@@ -202,7 +203,6 @@ phpstan: ## Run PHP STAN test
 	@$(DOCKER) exec -i $(PROJECT) $(PHPSTAN)
 
 phpcs: ## Run PHP CS test
-	@$(DOCKER) exec -i $(PROJECT) $(PHP_CS) src/ scm/ infrastructure/
-
+	@./vendor/bin/phpcs 
 phpmd:
 	@$(DOCKER) exec -i $(PROJECT) ./vendor/bin/phpmd src/,scm/,infrastructure/ ansi ./phpmd.xml --exclude src/Kernel.php
